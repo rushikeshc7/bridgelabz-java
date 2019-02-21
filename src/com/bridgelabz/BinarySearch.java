@@ -1,5 +1,10 @@
 package com.bridgelabz;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -7,30 +12,40 @@ import utility.Utility;
 
 public class BinarySearch {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
         Utility u=new Utility();
         Scanner sc=new Scanner(System.in);
-        System.out.println("Enter the no of words you want to search:");
-        int n = sc.nextInt();
-        String[] words=new String[n];
-        System.out.println("Enter the words");
-        for(int i=0;i<n;i++)
+        int ch;
+    	String str = " ";
+    	String strArr[];
+    	FileReader fr = null;
+        try {
+    	   fr = new FileReader("file.txt");		
+    	   while((ch = fr.read()) != -1)
+           {
+           	System.out.print((char)ch);
+           	str += (char)ch;
+            } 
+    	fr.close();
+    	}
+        catch(FileNotFoundException e)
+    	{
+        	e.printStackTrace();
+    	}
+    
+        strArr = str.split(" ");
+        u.bubbleSortStr(strArr, strArr.length);
+        for(int i=0;i<strArr.length;i++)
         {
-        	words[i]=sc.next();
+        	System.out.print(strArr[i] + " ");
         }
-        Arrays.sort(words);
-        System.out.println("Enter the word you want to search:");
-    	String x = sc.next();
-        int z=u.binarySearchWord(words, x);
-        if(z!=-1)
-        {
-        	System.out.println("Word found");
-        }
-        else
-        {
-        	System.out.println("Word not found");
-        }
+        System.out.println("\nEnter the word you want to search:");
+	        String x = sc.next();
+	       
+	        if(u.binarySearchWord(strArr, x) != -1)
+		     	System.out.println("String found");
+	        else
+		     	System.out.println("String not found");
 	}
-
 }

@@ -1,4 +1,12 @@
 package utility;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Random;
@@ -521,68 +529,45 @@ public class Utility {
           }
          
          /*
-          * @param     arr[]  input array
-          *            left    left side of array
-          *            m      mid
-          *            right   right side of array
+          * @param     
           * @returns
           */
-         public void merge(int arr[], int left, int m, int right) 
-         { 
-             int n1 = m - left + 1; 
-             int n2 = right - m; 
-       
-             /* Create temp arrays */
-             int L[] = new int [n1]; 
-             int R[] = new int [n2]; 
+         public static void MergeSort(String[] str) {
+     		if (str.length > 2) {
+     			String[] left = new String[str.length / 2];
+     			String[] right = new String[str.length - str.length / 2];
 
-             for (int i=0; i<n1; ++i) 
-                 L[i] = arr[left + i]; 
-             for (int j=0; j<n2; ++j) 
-                 R[j] = arr[m + 1 + j]; 
-       
-             int i = 0, j = 0; 
-      
-             int k = left; 
-             while (i < n1 && j < n2) 
-             { 
-                 if (L[i] <= R[j]) 
-                 { 
-                     arr[k] = L[i]; 
-                     i++; 
-                 } 
-                 else
-                 { 
-                     arr[k] = R[j]; 
-                     j++; 
-                 } 
-                 k++; 
-             } 
+     			for (int i = 0; i < left.length; i++) {
+     				left[i] = str[i];
+     			}
 
-             while (i < n1) 
-             { 
-                 arr[k] = L[i]; 
-                 i++; 
-                 k++; 
-             } 
-      
-             while (j < n2) 
-             { 
-                 arr[k] = R[j]; 
-                 j++; 
-                 k++; 
-             } 
-         }
-         public void sort(int arr[], int left, int right) 
+     			for (int i = 0; i < right.length; i++) {
+     				right[i] = str[i + str.length / 2];
+     			}
+     			MergeSort(left);
+     			MergeSort(right);
+     			merge(str, left, right);
+     		   }
+     	     }
+         
+         public static void merge(String str[], String left[], String right[]) 
          { 
-             if (left < right) 
-             { 
-                 int m = (left+right)/2; 
-                 sort(arr, left, m); 
-                 sort(arr , m+1, right);
-                 merge(arr, left, m, right); 
-             } 
-         }
+        	int a = 0;
+     	    int b = 0;
+     		for (int i = 0; i < str.length; i++) {
+     			if (b >= right.length || (a < left.length && left[a].compareToIgnoreCase(right[b]) < 0)) {
+     				str[i] = left[a];
+     				a++;
+     			} else {
+     				str[i] = right[b];
+     				b++;
+     			}
+     		}
+        	 
+        	 
+        	 
+         }	 
+        
          
          /*
           *@param   notes[] array of notes
@@ -687,15 +672,23 @@ public class Utility {
          *           t   input number
          * @returns  square root
          */
-        double epsilon = Math.pow(1 * 2.71828 , -15);
+        
         public double sqRoot(double c) {
         	double t = c;
-        	t = (double)((c / t) + t) / 2;
-        	double r = t;
-    		if(Math.abs(r - (c / r)) > (epsilon * r)){
-    			return r;
+    		if(c>0)
+    	    {
+    			double epsilon = Math.pow(1 * 2.71828 , -15);
+    			while(Math.abs(t - (c / t)) > (epsilon * t))
+    			{
+    			    t = (double)((c / t) + t) / 2;
+    		    }
     		}
-    		return sqRoot(c);
+    		else
+    		{
+    			System.out.println("Number Can,t be negative, please enter positive number");
+    		}
+    			
+    		return t;
     	}
         
         /*
@@ -828,44 +821,27 @@ public class Utility {
          * @param     arrInt[]  user input int array
          * @returns   Sorted int array using insertion sort
          */
-        public int[] insertionSortInt(int arrInt[], int nI)
+        public void insertionSortInt(int arrInt[], int nI)
         {
+
             for(int i=1;i<nI;i++)
             {
            	 int a = arrInt[i]; 
            	 int j = i-1; 
            	  
            	            
-           	 while (j>=-1 && arrInt[j]<(a)) 
+           	 while (j>=0 && arrInt[j]>(a)) 
            	 { 
-           		arrInt[j+1] = arrInt[j]; 
-           	     j = j--; 
-           	 } 
-           	arrInt[j+1] = a;
-             }
-            return arrInt;
-         }
-        
-        /*
-         * @param     arrStr[]  user input str array
-         * @returns   Sorted string array using insertion sort
-         */
-        public String[] insertionSortStr(String arrStr[], int nS)
-        {
-            for(int i=1;i<nS;i++)
-            {
-           	 String a = arrStr[i]; 
-           	 int j = i-1; 
-           	  
-           	            
-           	 while (j>=-1 && arrStr[j].compareTo(a)<0) 
-           	 { 
-           	     arrStr[j+1] = arrStr[j]; 
+           	     arrInt[j+1] = arrInt[j]; 
            	     j = j-1; 
            	 } 
-           	 arrStr[j+1] = a;
+           	 arrInt[j+1] = a;
              }
-            return arrStr;
+            System.out.println("Sorted array is:");
+            for(int k=0;k<nI;k++)
+            {
+           	 System.out.print(arrInt[k] + " ");
+            }
          }
         
         /*
@@ -919,5 +895,24 @@ public class Utility {
        	 }
        	 return arrStr1;
         }
+        
+        /*
+         * @param
+         * @returns 
+         */
+        
+        public static void print(char[][] game) {
+    		for (int i = 0; i < game.length; i++)
+    		{
+    			System.out.print("| ");
+    			for (int j = 0; j < game.length; j++)
+    			{
+    				System.out.print(game[i][j] + " | ");
+    			}
+    			System.out.println("\n");
+    		}
+   
+    	}
+
 }
 

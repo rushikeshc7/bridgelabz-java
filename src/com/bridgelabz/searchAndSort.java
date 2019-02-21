@@ -36,16 +36,15 @@ public class searchAndSort {
             }
             System.out.println("Enter element you want to search:");
             int key = sc.nextInt();
-            long time1 = System.currentTimeMillis();
-//            long start=u.currentTime();
+            long start=System.currentTimeMillis();
     		if(u.binSearchInt(arr , key) > -1) {
     			System.out.println("Number found");
     		}
     		else
     			System.out.println("Not found");
-    		long time2 = System.currentTimeMillis();
-    		long result = time2-time1;
-    		System.out.println("Time taken for binary search: " +  ((double)result / 1000) + " second.");
+    		long end = System.currentTimeMillis();
+    		long result = u.elapsedTime(start, end);
+    		System.out.println("\nTime taken for binary search: " +  ((double)result / 1000) + " second.");
             break;
             
          case 2:
@@ -59,56 +58,49 @@ public class searchAndSort {
             }
             System.out.println("Enter String you want to search:");
             String keyStr = sc.next();
-            time1 = System.currentTimeMillis();
+            start = System.currentTimeMillis();
     		if(u.binSearchStr(array , keyStr) > -1) {
     			System.out.println("String found");
     		}
     		else
     			System.out.println("Not found");
-    		time2 = System.currentTimeMillis();
-    		result = time2-time1;
-    		System.out.println("Time taken for binary search: " +  ((double)result / 1000) + " second.");
+    		end = System.currentTimeMillis();
+    		result = u.elapsedTime(start, end);
+    		System.out.println("\nTime taken for binary search: " +  ((double)result / 1000) + " second.");
 
             break; 
             
          case 3:
         	System.out.println("Enter no of elements of array:");
             int nI = sc.nextInt();
+            start = System.currentTimeMillis();
             System.out.println("Enter elements in int array:");
             int arrInt[] = new int[nI];
             for(int k=0;k<arrInt.length;k++)
             {
             	arrInt[k]=sc.nextInt();
             }  
-            int[] copyArrInt = arrInt;
-    	    time1 = System.currentTimeMillis();		
-    	    copyArrInt = u.insertionSortInt(arrInt, nI);		
-    		time2 = System.currentTimeMillis();
-    		result = time2-time1;
-    		System.out.println("Time taken for insertion sort: " +  ((double)result/ 1000) + " second.");		
-    		for(int i : arrInt) {
-    			System.out.print(i + " ");
-    		}
+            u.insertionSortInt(arrInt, nI);		
+    		end = System.currentTimeMillis();
+    		result = u.elapsedTime(start, end);
+    		System.out.println("\nTime taken for insertion sort: " +  ((double)result/ 1000) + " second.");		
             break;
             
          case 4:
         	System.out.println("Enter no of elements of array:");
-            int nS = sc.nextInt();
+        	start = System.currentTimeMillis();
+        	int nS = sc.nextInt();
             System.out.println("Enter elements in string array:");
             String arrStr[] = new String[nS];
             for(int p=0;p<arrStr.length;p++)
             {
             	arrStr[p]=sc.next();
             } 
-            String[] copyArrStr = arrStr;
-    		time1 = System.currentTimeMillis();		
-    		copyArrStr = u.insertionSortStr(arrStr, nS);		
-    		time2 = System.currentTimeMillis();
-    		result = time2-time1;
-    		System.out.println("Time taken for insertion sort: " +  ((double)result / 1000) + " second.");		
-    		for(String string : copyArrStr) {
-    			System.out.print(string + " ");
-    		}
+    		u.insertion(arrStr, nS);		
+    		end = System.currentTimeMillis();
+    		result = u.elapsedTime(start, end);
+    		System.out.println("\nTime taken for insertion sort: " +  ((double)result / 1000) + " second.");		
+    		
             break;
          
          case 5:
@@ -121,12 +113,11 @@ public class searchAndSort {
             	arrInt1[q]=sc.nextInt();
             }
             int[] copyArrInt1 = arrInt1;
-            time1 = System.currentTimeMillis();
-//          start=u.currentTime();
+            start = System.currentTimeMillis();
             copyArrInt1 = u.bubbleSortInt(arrInt1, nI1);		
-    		time2 = System.currentTimeMillis();
-    		result = time2-time1;
-    		System.out.println("Time taken for bubble sort: " +  ((double)result / 1000) + " second.");		
+    		end = System.currentTimeMillis();
+    		result = u.elapsedTime(start, end);
+    		System.out.println("\nTime taken for bubble sort: " +  ((double)result / 1000) + " second.");		
     		for(int i : copyArrInt1) {
     			System.out.print(i + " ");
     		}
@@ -142,11 +133,11 @@ public class searchAndSort {
             	arrStr1[r]=sc.next();
             }   
             String[] copyArrStr1 = arrStr1;
-            time1 = System.currentTimeMillis();
+            start = System.currentTimeMillis();
             copyArrStr1 =  u.bubbleSortStr(arrStr1, nS1);		
-    		time2 = System.currentTimeMillis();
-    		result = time2-time1;
-    		System.out.println("Time taken for bubble sort: " +  ((double)result/ 1000) + " second.");		
+    		end = System.currentTimeMillis();
+    		result = u.elapsedTime(start, end);
+    		System.out.println("\nTime taken for bubble sort: " +  ((double)result/ 1000) + " second.");		
     		for(String string : copyArrStr1) {
     			System.out.print(string + " ");
     		}
