@@ -8,8 +8,7 @@ public class MergeSort {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-        Utility u=new Utility();
-        Scanner sc=new Scanner(System.in); 
+        Utility u=new Utility(); 
         String[] str = {"India", "America", "China", "England", "Australia", "New Zealand"};
         u.MergeSort(str);
         for(String country: str)

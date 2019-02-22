@@ -9,7 +9,6 @@ public class searchAndSort {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
         Utility u=new Utility();
-        Scanner sc=new Scanner(System.in);
         int choice=0;
         System.out.println("1. binarySearch method for integer");
         System.out.println("2. binarySearch method for String");
@@ -22,20 +21,20 @@ public class searchAndSort {
         {
         	System.out.println(); 	
          System.out.println("Enter your choice:");
-         choice = sc.nextInt();
+         choice = u.inputInt();
          switch(choice)
          {
          case 1:
         	System.out.println("Enter no of elements of array:");
-            int n = sc.nextInt();
+            int n = u.inputInt();
             System.out.println("Enter elements in int array:");
             int arr[] = new int[n];
             for(int i=0;i<arr.length;i++)
             {
-            	arr[i]=sc.nextInt();
+            	arr[i]=u.inputInt();
             }
             System.out.println("Enter element you want to search:");
-            int key = sc.nextInt();
+            int key = u.inputInt();
             long start=System.currentTimeMillis();
     		if(u.binSearchInt(arr , key) > -1) {
     			System.out.println("Number found");
@@ -49,15 +48,15 @@ public class searchAndSort {
             
          case 2:
         	System.out.println("Enter no of elements of array:");
-            n = sc.nextInt();
+            n = u.inputInt();
             System.out.println("Enter elements in string array");
             String array[] = new String[n];
             for(int j=0;j<array.length;j++)
             {
-            	array[j]=sc.next();
+            	array[j]=u.inputString();
             }
             System.out.println("Enter String you want to search:");
-            String keyStr = sc.next();
+            String keyStr = u.inputString();
             start = System.currentTimeMillis();
     		if(u.binSearchStr(array , keyStr) > -1) {
     			System.out.println("String found");
@@ -72,13 +71,13 @@ public class searchAndSort {
             
          case 3:
         	System.out.println("Enter no of elements of array:");
-            int nI = sc.nextInt();
+            int nI = u.inputInt();
             start = System.currentTimeMillis();
             System.out.println("Enter elements in int array:");
             int arrInt[] = new int[nI];
             for(int k=0;k<arrInt.length;k++)
             {
-            	arrInt[k]=sc.nextInt();
+            	arrInt[k]=u.inputInt();
             }  
             u.insertionSortInt(arrInt, nI);		
     		end = System.currentTimeMillis();
@@ -89,12 +88,12 @@ public class searchAndSort {
          case 4:
         	System.out.println("Enter no of elements of array:");
         	start = System.currentTimeMillis();
-        	int nS = sc.nextInt();
+        	int nS = u.inputInt();
             System.out.println("Enter elements in string array:");
             String arrStr[] = new String[nS];
             for(int p=0;p<arrStr.length;p++)
             {
-            	arrStr[p]=sc.next();
+            	arrStr[p]=u.inputString();
             } 
     		u.insertion(arrStr, nS);		
     		end = System.currentTimeMillis();
@@ -105,12 +104,12 @@ public class searchAndSort {
          
          case 5:
         	System.out.println("Enter no of elements of array:");
-            int nI1 = sc.nextInt();
+            int nI1 = u.inputInt();
             System.out.println("Enter elements in int array:");
             int arrInt1[] = new int[nI1];
             for(int q=0;q<arrInt1.length;q++)
             {
-            	arrInt1[q]=sc.nextInt();
+            	arrInt1[q]=u.inputInt();
             }
             int[] copyArrInt1 = arrInt1;
             start = System.currentTimeMillis();
@@ -125,12 +124,12 @@ public class searchAndSort {
           
          case 6:
         	System.out.println("Enter no of elements of array:");
-            int nS1 = sc.nextInt();
+            int nS1 = u.inputInt();
             System.out.println("Enter elements in string array:");
             String arrStr1[] = new String[nS1];
             for(int r=0;r<arrStr1.length;r++)
             {
-            	arrStr1[r]=sc.next();
+            	arrStr1[r]=u.inputString();
             }   
             String[] copyArrStr1 = arrStr1;
             start = System.currentTimeMillis();
@@ -145,7 +144,7 @@ public class searchAndSort {
             
          default:
         	 System.out.println("Wrong choice. Please select between 1 to 6");
-        	 choice = sc.nextInt();
+        	 choice = u.inputInt();
          }
        }while(choice!=0);       
     }

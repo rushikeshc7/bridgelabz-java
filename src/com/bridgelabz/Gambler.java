@@ -9,13 +9,12 @@ public class Gambler {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub\
 		Utility u=new Utility();
-        Scanner sc=new Scanner(System.in);
         System.out.println("Enter the Stake:");   //Stake
-        int stake=sc.nextInt();
+        int stake=u.inputInt();
         System.out.println("Enter the goal:");    //Goal
-        int goal=sc.nextInt();
+        int goal=u.inputInt();
         System.out.println("Enter the NoOftimes:"); //No of Trails
-        int NoOfTimes=sc.nextInt();
+        int NoOfTimes=u.inputInt();
         u.GamblerState(stake, goal, NoOfTimes);   // Function call
 	}
 

@@ -10,7 +10,6 @@ public class TicTacToe {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
         Utility u = new Utility();
-        Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to Tic Tac Toe!!!");
         int check = 0;
 		boolean play = false;
@@ -55,9 +54,9 @@ public class TicTacToe {
 			if(play == false && check < 8)
 			{
 				System.out.println("It's Your turn...Enter the row(<=2):");
-				int p = sc.nextInt();
+				int p = u.inputInt();
 				System.out.println("Enter the column(<=2):");
-				int q = sc.nextInt();
+				int q = u.inputInt();
 				if(game[p][q] == '-')
 				{
 					game[p][q]='X';

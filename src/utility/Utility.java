@@ -1,35 +1,61 @@
 package utility;
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
+import Method.Dequeue;
+import Method.Stack;
 public class Utility {
-       static Scanner sc=new Scanner(System.in);
+       
+	   static Scanner sc=new Scanner(System.in);
+	   public static int inputInt()
+	   {
+	     	int num = sc.nextInt();
+	    	return num;
+	   }
+
+	   public static String inputString()
+	   {
+	    	String str = sc.nextLine();
+	     	return str;
+	   }
+	  
+	   public static String inputStr()
+	   {
+	    	String singleWordString = sc.next();
+	    	return singleWordString;
+	   }
+
+	   public static float inputFloat()
+	   {
+	    	float flt = sc.nextFloat();
+	    	return flt;
+	   }
+
+	   public static double inputDouble()
+	   {
+		    double dbl = sc.nextDouble();
+	    	return dbl;
+	   }
+	    
 		/*
 		@param     int y   year
 		@returns           the year is leap year or not
 		*/
-		public void checkLeapYear(int y)
+		public boolean checkLeapYear(int y)
 		{
 			if(y>1000 && y<10000)
 			{
 				if(y%4==0)
 				{
-					System.out.println(y + " is leap year");
+					return true;
 				}
 				else
 				{
-					System.out.println(y + " is not leap year");
+					return false;
 				}
 			}
+			return true;
 		}
 		
 		
@@ -40,7 +66,7 @@ public class Utility {
 		public void replaceUserName()
 		{
 			System.out.println("Enter the name you want to replace");
-	        String s=sc.next();
+	        String s=inputString();
 	        System.out.println("Hello " + s + ",How are You?");
 		}
         
@@ -52,7 +78,7 @@ public class Utility {
 		{ 
 			int n;
 			System.out.println("Enter the number of times coin flipped:");
-			n=sc.nextInt(); 
+			n=inputInt(); 
 			Random random=new Random();
 			int head=0,tail=0;
 			
@@ -184,19 +210,19 @@ public class Utility {
         	 {
         		 count++;
         		 int ran=random.nextInt(n);
-        		 int t=0;
+        		 int check=0;
                     for(int j=0;j<n;j++)
                     {
         		       if(array[i]==ran)
         		       {
-        		     	    t=1;
+        		     	    check=1;
         		       }
                     }
-                    if(t==0)
+                   if(check==0)
         		    {
         			    array[i]=ran;
         			    i++;
-        		    }
+        		    } 
               }
         		 
         	 System.out.println("" + count);
@@ -210,16 +236,16 @@ public class Utility {
          {
         	 PrintWriter printwriter=new PrintWriter(System.out,true);
         	 System.out.println("Enter number of rows:");
-        	 int p=sc.nextInt();
+        	 int p=inputInt();
         	 System.out.println("Enter number of colomns:");
-        	 int q=sc.nextInt();
+        	 int q=inputInt();
         	 int intArray[][]=new int[p][q];
         	 printwriter.println("Enter array:");
         	 for(int i=0;i<p;i++)
         	 {
         		 for(int j=0;j<q;j++)
         		 {
-        			 intArray[i][j]=sc.nextInt();
+        			 intArray[i][j]=inputInt();
         		 }
         	 }
         	 for(int i=0;i<p;i++)
@@ -326,8 +352,8 @@ public class Utility {
          {
         	 double t,v,windchill;
         	 System.out.println("Enter the temperature and speed:");
-        	 t=sc.nextDouble();
-        	 v=sc.nextDouble();
+        	 t=inputDouble();
+        	 v=inputDouble();
         	 if(t>50)
         	 {
         		 System.out.println("Temperature should not be greater than 50");
@@ -350,7 +376,7 @@ public class Utility {
           *            str2  second given string
           * @returns   strings are anagram or not.
           */
-         public void anagramStrings(String str1,String str2)
+         public boolean anagramStrings(String str1,String str2)
          {
         	 
         	 
@@ -359,7 +385,7 @@ public class Utility {
         	 
         	 if(str1.length()!=str2.length())
         	 {
-        		 System.out.println("The strings are not anagrams");
+        		 return false;
         	 }
         	 else
         	 {
@@ -368,43 +394,56 @@ public class Utility {
         		 Arrays.sort(s1);
         		 Arrays.sort(s2);
             	 if(Arrays.equals(s1,s2))
-            	 {
-            		System.out.println("The Strings are anagram."); 
-            	 }
-            	 else
-            	 {
-            		 System.out.println("The Strings are not anagram.");
-            	 }
+            	       return true;
         	  }
+			return false;
         	
          }
          
          /*
-          * @param    None
+          * @param    n    range
           * @returns  prime numbers between 0 to 1000
           */
-         public void prime()
+         public String[] prime(int n) 
          {
-        	 String primeNumber= " ";
-        	 for(int i=1;i<1000;i++)
-        	 {
-        		 int count=0;
-        		 for(int j=i;j>=1;j--)
-        		 {
-        			 if(i%j==0)
-        			 {
-        				 count=count+1;
-        			 }
-        	     }
-        		 if(count==2)
-        		 {
-        			 primeNumber=primeNumber+i+" ";
-        		 }
-        	 }
-        	 System.out.println("Prime numbers from 0 to 1000 is: ");
-        	 System.out.println(primeNumber);
-         }
-         
+     		String[] arrstr = new String[1000];
+     		int position = 0;
+     		for(int i = 2; i <= n; i++) 
+     		{
+     		    boolean isPrime = true;
+     			
+     			for(int j = 2; j <= i / 2; j++)
+     			{
+     				if((i % j) == 0) 
+     				{
+     					isPrime = false;
+     					break;
+     				}
+     			}
+     			if(isPrime) 
+     			{
+     				arrstr[position] = String.valueOf(i);
+     				position++;
+     			}
+     		}
+     		String[] returnArray = new String[position];
+     		for(int k = 0; k < position; k++) 
+     		{
+     			returnArray[k] = arrstr[k];
+     		}
+     		return returnArray;
+     	}
+
+     	
+//     	public static void primePrint(int num) {
+//     		for (int i = 2; i <= num; i++) {
+//     			if (prime(i)) {
+//     				System.out.print(i + " ");
+//     			}
+//     		}
+//		
+//     	}
+//         
          /*
           * @param    arr[]  array to be sorted
           *           n      length of the array
@@ -469,7 +508,7 @@ public class Utility {
          {
         	 System.out.println("Is your number:" + mid);
         	 System.out.println("Select between 'Yes', 'High' and 'Low'");
-        	 x = sc.next();
+        	 x = inputString();
         	 
         	 do
         	 {
@@ -492,7 +531,7 @@ public class Utility {
         	     {
         			 mid=(first+last)/2;
         			 System.out.println("Is your number:" + mid);
-        			 x = sc.next();
+        			 x = inputString();
         	     }
         	 }while(first<=last);
         	 
@@ -604,13 +643,13 @@ public class Utility {
           *           y  year
           *@returns   weekday
           */
-         public double calender(double m,double d,double y)
+         public int calender(int m,int d,int y)
          {
-        	double y0 = y - ((14 - m) / 12);
-     		double x = y0 + (y0 / 4) - (y0 / 100) + (y0 / 400);
-     		double m0 = m + 12 * ((14 - m) / 12) - 2;
-     		double d0 = (d + x + (31 * m0 / 12)) % 7;
-     		return (int)d0;
+        	int y0 = y - ((14 - m) / 12);
+     		int x = y0 + (y0 / 4) - (y0 / 100) + (y0 / 400);
+     		int m0 = m + 12 * ((14 - m) / 12) - 2;
+     		int d0 = (d + x + (31 * m0 / 12)) % 7;
+     		return d0;
          }
          
          /*
@@ -631,18 +670,18 @@ public class Utility {
         public void tempConversion()
         {
               System.out.println("Enter 'f' for fahrenheit and 'c' for celcius as temperature:");
-              String t=sc.next(); 
+              String t=inputString(); 
             	if(t.equals("c"))
               {
                  	System.out.println("Enter temperature in celcius:");
-                	double cTemp = sc.nextDouble(); 
+                	double cTemp = inputDouble(); 
                 	System.out.format("Temperature in farenheit is: %.2f" , tempConv(cTemp, t));
 
               }
               else if(t.equals("f"))
               {
                 	System.out.println("Enter temperature in fahrenheit:");
-                  double fTemp = sc.nextDouble();
+                  double fTemp = inputDouble();
                 	System.out.format("Temperature in celcius is: %.2f" , tempConv(fTemp, t));
                }
                else
@@ -913,6 +952,81 @@ public class Utility {
     		}
    
     	}
+        
+        public boolean checkPalindrome(String string) {
+    		if(string.length() < 2) {
+    			return false;
+    		}
+    		char[] array = string.toCharArray();
+    		int n = array.length;
+    		for(int i = 0; i < n; i++) {
+    			if(array[i] != array[n - 1 - i]) {
+    				return false;
+    			}
+    		}
+    		return true;
+        }
+        
+    	public static boolean checkPalindromeWord(String word) {
+    		int size = word.length();
+    		boolean isPalindrome = true;
+    		Dequeue<Character> d = new Dequeue<Character>(size);
+    		char ch[] = word.toCharArray();
+    		
+    		for(int i = 0; i < ch.length; i++)
+    		{
+    			d.addRear(ch[i]);
+    		}
+     		for(int i = 0; i < ch.length / 2; i++)
+     		{
+    			if (d.removeFront() != d.removeRear()) 
+    			{
+    				isPalindrome = false;
+    				break;
+    			}
+    		}
+    		return isPalindrome;
+    	}
+       
+    	public static boolean balancedParanthesis(String exp)
+    	{
+    		
+    		int len = exp.length();
+    		Stack<Character> stack = new Stack<Character>(len);
+    		char expArr[] = exp.toCharArray();
+    		char ch=0;
+            try {
+    		for (int i = 0; i < expArr.length; i++)
+    		{
+
+    			if (expArr[i] == '(')
+    			{
+    				stack.push(expArr[i]);
+    			}
+    			else if (expArr[i] == ')')
+    			{
+    			    ch = stack.pop();
+    			    switch(ch)
+    			    {
+    			    case ')':
+    			    	if(ch != '(');
+    					return false;
+    			    }
+    	        }
+    		 }
+
+            }
+            catch(NullPointerException np)
+            {
+            	np.printStackTrace();
+            }
+
+    		return stack.isEmpty();
+    	 }
+
+    	
+        
+
 
 }
 

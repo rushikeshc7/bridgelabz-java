@@ -8,10 +8,18 @@ public class leapYear {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
         Utility u=new Utility();
-        Scanner sc=new Scanner(System.in);
+
 		System.out.println("Enter the year");
-		int y=sc.nextInt();
-		u.checkLeapYear(y);
+		int y=u.inputInt();
+		boolean result = u.checkLeapYear(y);
+		if(result)
+		{
+			System.out.println(y + " is leap year");
+		}
+		else
+		{
+			System.out.println(y + " is not leap year");
+		}
 	}
 
 }

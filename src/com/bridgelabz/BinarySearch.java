@@ -15,7 +15,6 @@ public class BinarySearch {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
         Utility u=new Utility();
-        Scanner sc=new Scanner(System.in);
         int ch;
     	String str = " ";
     	String strArr[];
@@ -25,7 +24,7 @@ public class BinarySearch {
     	   while((ch = fr.read()) != -1)
            {
            	System.out.print((char)ch);
-           	str += (char)ch;
+           	str = str + (char)ch;
             } 
     	fr.close();
     	}
@@ -41,7 +40,7 @@ public class BinarySearch {
         	System.out.print(strArr[i] + " ");
         }
         System.out.println("\nEnter the word you want to search:");
-	        String x = sc.next();
+	        String x = u.inputString();
 	       
 	        if(u.binarySearchWord(strArr, x) != -1)
 		     	System.out.println("String found");
