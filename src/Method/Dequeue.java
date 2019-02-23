@@ -10,20 +10,24 @@ public class Dequeue<T> {
 		int rear = -1;
 		int front = -1;
 		Object deque[];
-		public Dequeue(int n) {
+		public Dequeue(int n)
+		{
 			this.n = n;
 			deque = new Object[n];
 		}
 
 
 		public boolean addRear(T data) {
-			if(rear == n - 1 || rear+1 == front) {
+			if(rear == n - 1 || rear+1 == front) 
+			{
 				System.out.println("Deque is full");
 				return false;
 			}
-			else {
+			else 
+			{
 				deque[++rear] = data;
-				if(front == -1) {
+				if(front == -1)
+				{
 					front = 0;
 				}
 				return true;
@@ -31,14 +35,17 @@ public class Dequeue<T> {
 		}
 		
 		
-		public T removeFront() {
+		public T removeFront() 
+		{
 			T temp;
-			if(front == -1) {
+			if(front == -1) 
+			{
 				System.out.println("Deque is empty");
 				return null;
 			}
 			else {
-				if(front == n) {
+				if(front == n)
+				{
 					temp = (T) deque[front];
 					front = 0;
 				}
@@ -46,7 +53,8 @@ public class Dequeue<T> {
 					temp = (T) deque[front];
 					deque[front] = null;
 					front++;
-					if(front == rear + 1) {
+					if(front == rear + 1)
+					{
 						front = -1;
 						rear = -1;
 					}
@@ -81,21 +89,25 @@ public class Dequeue<T> {
 				return false;
 			}
 			else {
-			if(front == -1) {
-				deque[++front] = data ;
-				rear = 0;
-				return true;
-			}
-			else {
-				if(front == 0) {
-					front = n - 1;
-					deque[front] = data ;
-				}
-				else {
-					deque[--front] = data ;
-				}
-				return true;
-			}
+			      if(front == -1) 
+			      {
+				      deque[++front] = data ;
+				      rear = 0;
+				      return true;
+			      }
+			      else 
+			      {
+				    if(front == 0) 
+				    {
+					   front = n - 1;
+					   deque[front] = data ;
+				    }
+				    else 
+				    {
+					   deque[--front] = data ;
+				    }
+				    return true;
+			    }
 			}
 		}
 		

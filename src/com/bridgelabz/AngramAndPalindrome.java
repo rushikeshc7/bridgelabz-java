@@ -11,9 +11,12 @@ public class AngramAndPalindrome {
 		
 		System.out.println("Anagram and prime numbers are:");
 		//	prints prime numbers that are anagrams
-		for(int i = 0; i < primeNumbers.length; i++) {
-			for(int j = i + 1; j < primeNumbers.length; j++) {
-				if(u.anagramStrings(primeNumbers[i], primeNumbers[j])) {
+		for(int i = 0; i < primeNumbers.length; i++) 
+		{
+			for(int j = i + 1; j < primeNumbers.length; j++) 
+			{
+				if(u.anagramStrings(primeNumbers[i], primeNumbers[j])) 
+				{
 					System.out.println(primeNumbers[i] + " " + primeNumbers[j]);
 				}
 			}
@@ -21,8 +24,10 @@ public class AngramAndPalindrome {
 
 		System.out.println("\nPalindrome and prime numbers are:");
 		//	prints prime numbers that are palindrome
-		for(int i = 0; i < primeNumbers.length; i++) {
-			if(u.checkPalindrome(primeNumbers[i])) {
+		for(int i = 0; i < primeNumbers.length; i++) 
+		{
+			if(u.checkPalindrome(primeNumbers[i])) 
+			{
 				System.out.println(primeNumbers[i]);
 			}
 		}

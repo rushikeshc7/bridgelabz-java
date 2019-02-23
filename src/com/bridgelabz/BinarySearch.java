@@ -1,5 +1,6 @@
 package com.bridgelabz;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -15,17 +16,19 @@ public class BinarySearch {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
         Utility u=new Utility();
-        int ch;
+        String ch;
     	String str = " ";
     	String strArr[];
     	FileReader fr = null;
         try {
-    	   fr = new FileReader("file.txt");		
-    	   while((ch = fr.read()) != -1)
+    	   fr = new FileReader("file.txt");
+    	   BufferedReader br= new BufferedReader(fr);
+    	   while((ch = br.readLine()) != null)
            {
-           	System.out.print((char)ch);
-           	str = str + (char)ch;
-            } 
+           	System.out.print(ch);
+           	str = str + ch;
+            }
+    	   br.close();
     	fr.close();
     	}
         catch(FileNotFoundException e)

@@ -1,24 +1,23 @@
 package bridgelabzDataStructure;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
 import utility.Utility;
 
-public class UnorderedList {
+public class OrderedList {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-        Utility u = new Utility();
-        String ch;
+		Utility u = new Utility();
+        int ch;
         FileReader fr = null;
         String str = "";
         try {
         	fr = new FileReader("unOrdered.txt"); 
         	BufferedReader br= new BufferedReader(fr);
-        	while((ch = br.readLine()) != null)
+        	while((ch = br.read()) != 0)
         	{
         		System.out.println(ch);
         		str = str + ch;
@@ -30,9 +29,9 @@ public class UnorderedList {
         {
             e.printStackTrace();
         }
-        System.out.println("Enter the word to check:");
-        String word = u.inputString();
-        u.unorderedListWord(word, str);
+        System.out.println("Enter the number to check:");
+        String num = u.inputString();
+        u.orderedListWord(num, str);
 	}
 
 }
