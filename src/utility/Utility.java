@@ -1312,7 +1312,7 @@ public class Utility {
     		
     		System.out.println("The word you want to search is: " +word);
     		if (llWord.search(word)) {
-    			System.out.println("The word is present in the list, remove it");
+    			System.out.println("\nThe word is present in the list, remove it");
     			
     			//remove the word from the list
     			llWord.remove(word);    
@@ -1330,24 +1330,23 @@ public class Utility {
     	}
     	
     	
-    	public static void orderedListWord(String num, String list) throws IOException {
-    		String noArray[] = list.split(" ");
+    	public static void orderedListWord(String num, String str) throws IOException {
+    		String strArr[] = str.split(" ");
     		LinkedList<String> llInt = new LinkedList<String>();
-    		for (int i = 0; i < noArray.length; i++) {
-    			llInt.add(noArray[i]);
+    		for (int i = 0; i < strArr.length; i++) {
+    			llInt.add(strArr[i]);
     		}
     		System.out.println("sorted list of numbers:");
-    		// System.out.println("----------"+word);
 
     		llInt.sort();
     		llInt.printList();
     		if (llInt.search(num)) {
-    			System.out.println("This word is alredy in list position so remove it");
+    			System.out.println("\nThe number is present in the list, remove it");
     			llInt.remove(num); 
     			llInt.printList();
 
     		} else {
-    			System.out.println("This word is not in the list so add it");
+    			System.out.println("\nThe number is not present in the list, add it");
     			llInt.add(num);
     			llInt.printList();
 

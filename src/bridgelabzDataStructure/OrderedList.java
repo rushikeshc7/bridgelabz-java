@@ -11,16 +11,16 @@ public class OrderedList {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		Utility u = new Utility();
-        int ch;
+        String s;
         FileReader fr = null;
         String str = "";
         try {
-        	fr = new FileReader("unOrdered.txt"); 
+        	fr = new FileReader("Ordered.txt"); 
         	BufferedReader br= new BufferedReader(fr);
-        	while((ch = br.read()) != 0)
+        	while((s = br.readLine()) != null)
         	{
-        		System.out.println(ch);
-        		str = str + ch;
+        		System.out.println(s);
+        		str = str + s;
         	}
         	br.close();
           fr.close();
