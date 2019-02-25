@@ -1,12 +1,16 @@
 package utility;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 import Method.LinkedList;
+import Method.Queue;
+import Method.QueueUsingLinkedList;
 import Method.Dequeue;
 import Method.Stack;
+import Method.StackUsingLinkedList;
 public class Utility {
 	 /*
 	  * @auther: Rushikesh Chopade
@@ -71,22 +75,23 @@ public class Utility {
 		 * @param    y: user input year
 		 * @returns  true if the input is leap year else false
 		 */
-		public boolean checkLeapYear(int y)
+		public void checkLeapYear(int y)
 		{
-			//To make sure input year contains 4 digit 
-			if(y>1000 && y<10000)
-			{
+			    //To make sure input year contains 4 digit 
 				//If the year is completely divisible by 4 then it's a leap year. 
-				if(y%4==0)
+				if(y>1000 && y<10000 && y%4==0)
 				{
-					return true;  //returns true if the year is leap year
+					System.out.println(y + " is a leap year");  //year is leap year
 				}
-				else
+			    else if(y>1000 && y<10000 && y%4 != 0)
 				{
-					return false; //returns false if the year is not leap year
+					System.out.println(y + " is a not leap year"); //year is not leap year
 				}
-			}
-			return true;
+			    else
+				{
+					System.out.println("Please enter 4 digit number to check leap year");
+				}
+		
 		}
 		
 		
@@ -95,12 +100,15 @@ public class Utility {
 		 */
 		public void replaceUserName()
 		{
+			String s1 = "Hello Amit, how are you?";
+			System.out.println(s1);
 			//To take the user input string
 			System.out.println("Enter the name you want to replace");
-	        String s=inputString();
+	        String s2 = inputString();
 	        
 	        //replacing the string with the username
-	        System.out.println("Hello " + s + ",How are You?");
+	        String s3 = s1.replace("Amit",s2); 
+	        System.out.println(s3);
 		}
         
 		
@@ -185,10 +193,10 @@ public class Utility {
         		   sum=sum+(1.0/i);   //To store is harmonic number in sum variable
         	    }
         	}
-        	 else
-        	 {
+        	else
+        	{
         		System.out.println("Enter a number greater than zero"); 
-        	 }
+        	}
         	 return sum;
         }
         
@@ -484,7 +492,7 @@ public class Utility {
           *            str2  second input string
           * @returns   true if strings are anagram else returns false
           */
-         public boolean anagramStrings(String str1,String str2)
+         public static boolean anagramStrings(String str1,String str2)
          {
         	 //Convert str1 and str 2 to lower case
         	 str1 = str1.toLowerCase();
@@ -513,11 +521,11 @@ public class Utility {
          }
          
          /*
-          * @Aim      Take a range of 0 ­ 1000 Numbers and find the Prime numbers in that range.
+          * @Aim      Take a range of 0 ­to 1000 Numbers and find the Prime numbers in that range.
           * @param    n:  range
           * @returns  Array of prime numbers
           */
-         public String[] prime(int n) 
+         public static String[] prime(int n) 
          {
      		String[] arrStr = new String[1000];
      		int position = 0;
@@ -1219,7 +1227,7 @@ public class Utility {
     		boolean isPalindrome = true;
     		
     		//Dequeue
-    		Dequeue<Character> d = new Dequeue<Character>(size);
+    		Dequeue<Character> d = new Dequeue<Character>();
     		char ch[] = word.toCharArray();
     	
     		for(int i = 0; i < ch.length; i++)
@@ -1295,15 +1303,20 @@ public class Utility {
     	 }
 
     	 /*
-         * @param    word:
-         *           str:   
-         */
+    	  *@Aim:     unordered list
+          *@param    word:  user input to search from list
+          *           str:   str read from file
+          */
     	public static void unorderedListWord(String word, String str) throws IOException
     	{
     		String[] arrStr = str.split(" ");
+    		
+    		//Linked list
     		LinkedList<String> llWord = new LinkedList<String>();
     		System.out.println();
     		System.out.println("Strings from the list are: ");
+    		
+    		//traverse through arrStr
     		for(int i=0;i < arrStr.length; i++)
     		{
     			llWord.add(arrStr[i]);
@@ -1311,7 +1324,11 @@ public class Utility {
     		}
     		
     		System.out.println("The word you want to search is: " +word);
-    		if (llWord.search(word)) {
+    		
+    		//To search the word in,linked list
+    		if (llWord.search(word))
+    		{
+    			//if word is present, remove it from list
     			System.out.println("\nThe word is present in the list, remove it");
     			
     			//remove the word from the list
@@ -1319,7 +1336,10 @@ public class Utility {
     			llWord.printList();
     		
 
-    		} else {
+    		}
+    		else 
+    		{
+    			//if word is not present, add it to the list
     			System.out.println("\nThe word is not present in the list, add it");
     			
     			//add the word to the list
@@ -1329,31 +1349,287 @@ public class Utility {
     		}
     	}
     	
-    	
-    	public static void orderedListWord(String num, String str) throws IOException {
+    	/*
+    	 *@Aim      Ordered list 
+         *@param    num:   user input to search from list
+         *          str:   str read from file
+         */
+    	public static void orderedListWord(String num, String str) throws IOException 
+    	{
     		String strArr[] = str.split(" ");
+    		
+    		//Linked list
     		LinkedList<String> llInt = new LinkedList<String>();
-    		for (int i = 0; i < strArr.length; i++) {
+    		
+    		//traverse through strArr
+    		for (int i = 0; i < strArr.length; i++) 
+    		{
     			llInt.add(strArr[i]);
     		}
     		System.out.println("sorted list of numbers:");
 
+    		//sort the linked list
     		llInt.sort();
     		llInt.printList();
-    		if (llInt.search(num)) {
+    		if (llInt.search(num)) 
+    		{
+    			//if number is present, remove it from list
     			System.out.println("\nThe number is present in the list, remove it");
+    			
+    			//remove number from the list
     			llInt.remove(num); 
     			llInt.printList();
 
-    		} else {
+    		} 
+    		else 
+    		{
+    			//if number is not present, add it to the list
     			System.out.println("\nThe number is not present in the list, add it");
+    			
+    			//add number to the list
     			llInt.add(num);
+    			System.out.println("\nsorted list after adding the number:");
+    			llInt.sort();
     			llInt.printList();
 
     		}
     	}
-        
+    	
+    	/*
+    	 *@Aim     Simulate banking cash counter
+    	 *@param   accBalance:  Available account balance  
+    	 */
+    	public void bankCashCounter(double accBalance)
+    	{
+    		//Queue
+    		Queue<Double> queue = new Queue<Double>();
+            
+            System.out.println("1. Add person to the queue");
+            System.out.println("2. remove person from the queue");
+            int choice1 = inputInt();
+            System.out.println("Enter your choice:");
+            
+            int count = 0;
+            
+            while(choice1 != 0)  
+            {  
+              //Switch case to add or remove person from the queue	
+              switch(choice1)
+              {
+                 case 1:
+                	//To add person
+            	        queue.enqueue();
+            	        System.out.println("1. Deposit cash");
+                        System.out.println("2. Withdraw cash");
+                        System.out.println("Enter your choice:");
+                        int choice = inputInt();
+                        while(choice != 0)
+                        {
+                        //Switch case to deposit or withdraw money from bank	
+                        switch(choice)
+                        {
+                        case 1:
+                        	count++;
+                            System.out.println("Enter the money you want to deposit:");
+                            double deposit = inputDouble();
+                            if(deposit < 0) 
+                            {
+                                System.out.println("Enter valid amount to deposit");
+                            }
+                            else
+                            {
+                            	//total balance after deposit
+                                accBalance = accBalance + deposit;
+                                System.out.println("Updated account balance is: " + accBalance);
+                            }  
+                            System.out.println("1. Deposit cash");
+                            System.out.println("2. withdraw cash");
+                            System.out.println("3. Remove existing person from the queue");
+                            System.out.println("Enter your choice:");
+                            choice = inputInt();
+                            break;
+                        case 2:
+                        	count++;
+            	            System.out.println("Enter the money you want to withdraw:");
+                            double withdraw = inputDouble();
+                            if(withdraw < 0)        
+                            {
+                                System.out.println("Enter valid amount to withdraw");
+                            }
+                            else if(withdraw > accBalance)
+                            {
+                            	System.out.println("Enter ");
+                            }
+                            else
+                            {
+                            	//total balance after withdrawal
+                                accBalance = accBalance - withdraw;
+                                System.out.println("Updated account balance is: " + accBalance);
+                            }
+                            System.out.println("1. Deposit cash");
+                            System.out.println("2. withdraw cash");
+                            System.out.println("3. Remove existing person from the queue");
+                            System.out.println("Enter your choice:");
+                            choice = inputInt();
+                            break;
+                        case 3:
+                        	
+                         	if(count == 0)
+                         	 {
+                       	    	System.out.println("Queue is empty, please add person to the queue"); 
+                        		System.out.println("press 4 to add person:");
+                        		choice = inputInt();
+                         	 }
+                       	     else
+                         	 {
+                       	    	//to remove person
+                       	        queue.dequeue();
+                       	        count--;
+                       	        System.out.println("Person is removed from the queue");
+                     	    	System.out.println("press 4 to add person:");
+                     	     	choice = inputInt();
+                       	     }  
+                         	 break;
+                        case 4:
+                        	//To add person
+                        	queue.enqueue();
+                	        System.out.println("1. Deposit cash");
+                            System.out.println("2. Withdraw cash");
+                            System.out.println("Enter your choice:");
+                            choice = inputInt();
+                         default:
+            	                System.out.println("Enter valid choice to deposit, withdraw or remove person.");
+                         }
+                        }
+                 case 2:
+                	 if(count == 0)
+                	 {
+                		System.out.println("Queue is empty, please add person to the queue"); 
+               	    	System.out.println("press 1 to add person:");
+               	    	choice1 = inputInt();
+                	 }
+                	 else
+                	 {
+                       //to remove person
+                	   queue.dequeue();
+                	   count--;
+                	   System.out.println("Person is removed from the queue");
+            	       System.out.println("press 1 to add person:");
+            	       choice1 = inputInt();
+                	 }
+                	 break;
+                  default:
+                  {
+                	 System.out.println("Enter valid choice to add or remove person from queue.");
+                  }
+               } 
+    	    }  
+        }
+    	
+    	public static ArrayList<Integer> prime1(int number) {
+    		ArrayList<Integer> prime = new ArrayList<Integer>();
 
+    		//Loop to iterate from 2 to number
+    		for (int i = 2; i <= number; i++) 
+    		{
+    			int check = 0;
+    			
+    			//Loop to iterate from 2 to half of value of first loop
+    			for (int j = 2; j <= i / 2; j++) 
+    			{
+    				//if remainder of first loop and second loop value is 0 then check will become 1, break the inner loop
+    				if (i % j == 0) 
+    				{
+    					check = 1;
+    					break;
+    				}
+    			}
+    			
+    			//if check is equal to 0 then value of i is prime and print it
+    			if(check == 0)
+    			{
+    				prime.add(i);
+    			}
+    				
+    		}
+    		return prime;
+    	}
+    	
+    	/*
+    	 * @Aim      Add the Prime Numbers that are Anagram in the Range of 0 ­ 1000 in a Queue using
+         *           the Linked List and Print the Anagrams from the Queue.
+    	 * @param    num:  range of prime number from 0 to 1000  
+    	 */
+        public static StackUsingLinkedList<String> anagramPrimeUsingStack(int num)
+        {
+    	    //Stack using linked list
+        	StackUsingLinkedList<String> stll = new StackUsingLinkedList<String>();
+        	String str1 = "";
+        	String str2 = "";
+         
+        	//ArrayList
+        	ArrayList<Integer> primeList = prime1(num);
+        	System.out.println("\nAnagram prime numbers using stackLL are: ");
+        	
+        	//iterate through the prime number list
+    		for (int i = 0; i < primeList.size(); i++) 
+    		{
+    			for (int j = i + 1; j < primeList.size(); j++) 
+    			{
+    				//get the integer from list and convert it to string
+    				str1 = Integer.toString(primeList.get(i));
+    				str2 = Integer.toString(primeList.get(j));
+    				
+    				//Check if the numbers are anagram
+    				if (anagramStrings(str1, str2)) 
+    				{
+    					//put numbers in the stack if the numbers are anagram
+    					stll.push(str1 + " " + str2);
+    				}
 
+    			}
+    		}
+    		return stll;
+
+        }
+    	
+        /*
+         *@Aim    Add the Prime Numbers that are Anagram in the Range of 0 ­ 1000 in a Stack using the Linked List 
+         *        and Print the Anagrams in the Reverse Order.
+         *@param  num:  range of prime number from 0 to 1000
+         */
+        public static QueueUsingLinkedList<String> anagramPrimeUsingQueue(int num)
+        {
+    	    //Queue using linked list
+        	QueueUsingLinkedList<String> quell = new QueueUsingLinkedList<String>();
+        	String str1 = "";
+        	String str2 = "";
+         
+        	//ArrayList
+        	ArrayList<Integer> primeList = prime1(num);
+        	System.out.println("\nAnagram prime numbers using queueLL are: ");
+        	
+        	//iterate through prime number list
+    		for (int i = 0; i < primeList.size(); i++) 
+    		{
+    			for (int j = i + 1; j < primeList.size(); j++) 
+    			{
+    				//get the integer from list and convert it to string
+    				str1 = Integer.toString(primeList.get(i));
+    				str2 = Integer.toString(primeList.get(j));
+    				
+    				//Check if the numbers are anagram
+    				if (anagramStrings(str1, str2)) 
+    				{
+    					//put numbers in the queue if the numbers are anagram
+    					quell.enqueue(str1 + " " + str2);
+    				}
+
+    			}
+    		}
+    		return quell;
+
+        }
+    	
 }
 
